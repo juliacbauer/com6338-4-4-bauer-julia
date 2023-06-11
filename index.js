@@ -45,5 +45,33 @@ document.body.onkeyup = function(e) {
     // Manipulate guesses
     guesses --
     remainingGuesses.textContent = guesses
-  } 
+  } else {
+    // Display correct letters
+    for (var i = 0; i < word.length; i++){
+      if(word[i] == e.key) {
+        letters[i] = e.key;
+      }
+    }
+    wordGuess.innerHTML = letters.join('');
+  }
+    // New word if word guessed correctly
+    if (letters.join('') === word) {
+      // Manipulate wins
+      winsEl.textContent ++;
+      // Display previous word
+      previousWord.textContent = word;
+      // Reset guesses
+      guesses = 10
+    }
+    // New word when out of guesses
+    if (guesses == 0) {
+      // Reset incorrect letters
+      incorrectLetters.textContent = ''
+      // Manipulate losses
+      lossesEl.textContent ++;
+      // Display previous word
+      previousWord.textContent = word;
+      // Reset guesses
+      guesses = 10
+     }
 }
