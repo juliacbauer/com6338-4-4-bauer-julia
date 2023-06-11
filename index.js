@@ -29,3 +29,21 @@ remainingGuesses.textContent = guesses
 var word = words[Math.floor(Math.random() * words.length)];
 console.log(word)
 
+// Change to underscores
+var letters = []
+for( i = 0; i < word.length; i++) {
+    letters[i] = "_";
+}
+wordGuess.textContent = letters.join('');
+
+// Access keypress
+document.body.onkeyup = function(e) {
+  console.log(e.key)
+  // Display incorrect letters
+  if (word.indexOf(e.key) == -1) {
+    incorrectLetters.textContent += e.key
+    // Manipulate guesses
+    guesses --
+    remainingGuesses.textContent = guesses
+  } 
+}
